@@ -9,17 +9,20 @@
     <!-- Add to Home Screen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Authentication">
-    <link rel="icon" type="image/png" sizes="192x192" href="">
+    <link rel="icon" type="image/png" sizes="72x72" href="/icons/bell-icon-72x72.png">
     <!-- Add to Home Screen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Authentication">
     <meta name="apple-mobile-web-app-status-bar-style" content="#f76700">
-    <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="">
+    <link rel="apple-touch-icon" type="image/png" sizes="72x72" href="/icons/bell-icon-72x72.png">
     <!-- Use minimum-scale=1 to enable GPU rasterization -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>App</title>
-    <link rel="icon" sizes="192x192" href="/icons/security-192x192.png">
+    <title>Web Push Notification</title>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" sizes="72x72" href="/icons/bell-icon-72x72.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-messaging.js"></script>
 </head>
 
 <body>
@@ -29,5 +32,18 @@
         <strong>enable JS</strong> to make this app work.</noscript>
     <!-- The app hooks into this div -->
     <div id="root"></div>
-
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker
+                    .register("/service-worker.js", { scope: "/" })
+                    .then((swReg) => {
+                        console.log("REGISTERED!", swReg);
+                    })
+                    .catch((error) => {
+                        console.error("Failed to register service worker: ", error);
+                    });
+            });
+        }
+    </script>
 </html>

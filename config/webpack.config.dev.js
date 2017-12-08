@@ -39,12 +39,6 @@ module.exports = {
         use: ["source-map-loader"]
       },
       {
-        enforce: "pre",
-        test: /\.js[x]*$/,
-        exclude: /node_modules/,
-        loader: "eslint-loader"
-      },
-      {
         test: /\.(gif|png|jpg|svg|jpeg\ttf|colored\.svg|eot|woff(2)?)(\?[a-z0-9]+)?$/,
         use: "file-loader"
       },

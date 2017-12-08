@@ -1,26 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 
-import Routes from "./routes";
+import Notify from "./containers/Notify";
+
+const theme = createMuiTheme();
 
 const styles = {
   "@global body": {
-    margin: "0",
-    padding: "0"
+    margin: 0,
+    padding: 0,
+    fontSize: "16px",
+    fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+    backgroundColor: "#f7f7f7"
   }
 };
 
 const App = ({ classes }) => {
   return (
-    <div className="App">
-      <Routes />
-    </div>
+    <MuiThemeProvider theme={theme}>
+      <Notify />
+    </MuiThemeProvider>
   );
-};
-
-App.propTypes = {
-  classes: PropTypes.object.isRequired
 };
 
 export default injectSheet(styles)(App);
